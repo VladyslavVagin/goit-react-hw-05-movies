@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import getMoviesPopular from '../../services/request-api';
+import { ListMovies, ListItem, TitleMovie } from './Home.styled';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -21,19 +23,21 @@ const Home = () => {
   return (
     <div>
       <h1>Tranding today</h1>
-      <ul>
+      <ListMovies>
         {popularMovies.map(movie => {
           return (
-            <li key={movie.id}>
-              <img
-                src={base_url_image + movie.poster_path}
-                alt={movie.name || movie.title}
-              />
-              {movie.title || movie.name}
-            </li>
+            <ListItem key={movie.id}>
+              <Link to={`movies/${movie.id}`}>
+                <img
+                  src={base_url_image + movie.poster_path}
+                  alt={movie.name || movie.title}
+                />
+                <TitleMovie>{movie.title || movie.name}</TitleMovie>
+              </Link>
+            </ListItem>
           );
         })}
-      </ul>
+      </ListMovies>
     </div>
   );
 };
