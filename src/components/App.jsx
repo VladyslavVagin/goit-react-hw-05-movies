@@ -1,8 +1,8 @@
-import getMoviesAPI from "services/request-api";
+import getMoviesPopular from "services/request-api";
 
 export const App = () => {
   return (
-    <div onClick={() => getMoviesAPI()}>
+    <div onClick={() => getMoviesPopular()}>
       React homework template
     </div>
   );
