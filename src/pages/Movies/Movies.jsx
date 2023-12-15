@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
 const Movies = () => {
   return (
-    <div>Movies</div>
-  )
-}
+    <div>
+      Movies
+      <Outlet />
+    </div>
+  );
+};
 
-export default Movies
+export default Movies;

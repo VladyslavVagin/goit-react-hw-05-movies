@@ -16,7 +16,10 @@ export const ListItem = styled.li`
   font-size: 32px;
   font-weight: 700;
   overflow: hidden;
-  width: calc((100% - 40px) / 3);
+  margin: 0 auto;
+  @media screen and (min-width: 1280px) {
+    width: calc((100% - 40px) / 3);
+  }
 `;
 
 export const TitleMovie = styled.p`
