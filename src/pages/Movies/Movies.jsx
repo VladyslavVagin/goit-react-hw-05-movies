@@ -31,7 +31,6 @@ const Movies = () => {
           const movies = response.data.results;
           if(movies.length > 0) {
             setSearchResult(movies);
-            Notify.success(`We found ${response.data.total_results} movies`);
           } 
           } catch (error) {
             console.log(error);
