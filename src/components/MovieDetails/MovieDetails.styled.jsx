@@ -12,4 +12,5 @@ export const Content = styled.div`
   align-items: flex-start;
   column-gap: 16px;
   padding-bottom: 20px;
+  border-bottom: 1px solid gray;
 `;

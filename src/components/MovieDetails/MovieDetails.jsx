@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useLocation, useParams, NavLink } from 'react-router-dom';
+import { useLocation, useParams, NavLink, Link, Outlet } from 'react-router-dom';
 import { getMovieDetails } from 'services/request-api';
 import { Content, Image } from './MovieDetails.styled';
 import picture from '../../images/noimage.jpg'
@@ -38,6 +38,7 @@ const MovieDetails = () => {
           userScore: data.vote_average,
           overview: data.overview,
           genres: data.genres,
+          year: data.release_date,
         });
       } catch (error) {
         console.log(error);
@@ -46,7 +47,7 @@ const MovieDetails = () => {
     showDetails();
   }, [movieId]);
 
-  const { poster, title, userScore, overview, genres } = dataMovie;
+  const { poster, title, userScore, overview, genres, year } = dataMovie;
   const base_url_image = 'https://image.tmdb.org/t/p/w500/';
 
   return (
@@ -58,12 +59,22 @@ const MovieDetails = () => {
           alt={`Poster for movie ${title}`}
         />
         <div>
-          <h2>{title}</h2>
+          <h2>{title}&nbsp;{year ? `(${year.slice(0, 4)})` : ''}</h2>
           <p>{`User score: ${(userScore * 10).toFixed(0)}%`}</p>
+          <h3>Overview</h3>
           <p>{overview || 'Description will be added later'}</p>
+          <h3>Genres</h3>
           <p>{genres && genres.map(el => el.name).join(' / ')}</p>
         </div>
       </Content>
+      <div>
+        <h4>Additional information</h4>
+        <ul>
+          <li><Link to={'cast'}>Cast</Link></li>
+          <li><Link to={'reviews'}>Reviews</Link></li>
+        </ul>
+        <Outlet/>
+      </div>
     </div>
   );
 };
