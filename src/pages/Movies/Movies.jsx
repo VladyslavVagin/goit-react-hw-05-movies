@@ -1,4 +1,4 @@
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { Outlet, useSearchParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieSearch } from 'services/request-api';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -39,10 +39,20 @@ const Movies = () => {
       }
     }, [query])
   
-   console.log(searchResult);
   return (
     <div>
       <SearchBar onSubmit={userSearchRequest}/>
+      <ul>
+        {searchResult.map(movie => {
+          return (
+            <li key={movie.id}>
+              <Link to={`${movie.id}`}>
+                <p>{movie.title || movie.name}</p>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
       <Outlet />
     </div>
   );
