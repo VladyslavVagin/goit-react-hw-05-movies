@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { getMoviesPopular } from 'services/request-api';
-import { ListMovies, ListItem, TitleMovie } from './Home.styled';
-import { Link } from 'react-router-dom';
+import { ListMovies, ListItem, TitleMovie, ImageM } from './Home.styled';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledLinkNav = styled(NavLink)`
+  text-decoration: none;
+  color: #222020;
+`
 
 const Home = () => {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -27,13 +33,13 @@ const Home = () => {
         {popularMovies.map(movie => {
           return (
             <ListItem key={movie.id}>
-              <Link to={`movies/${movie.id}`}>
-                <img
+              <StyledLinkNav to={`movies/${movie.id}`}>
+                <ImageM
                   src={base_url_image + movie.poster_path}
                   alt={movie.name || movie.title}
                 />
                 <TitleMovie>{movie.title || movie.name}</TitleMovie>
-              </Link>
+              </StyledLinkNav>
             </ListItem>
           );
         })}
