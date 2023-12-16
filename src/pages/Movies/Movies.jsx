@@ -19,6 +19,7 @@ const Movies = () => {
        }
        setQuery({query: searchQuery});
        event.target.children[0].value = '';
+       location.state?.to('/movies');
     }
 
     //============================ If change query in SearchParams, make request to API for search movies
@@ -30,7 +31,6 @@ const Movies = () => {
           const movies = response.data.results;
           if(movies.length > 0) {
             setSearchResult(movies);
-            console.log(movies);
             Notify.success(`We found ${response.data.total_results} movies`);
           } 
           } catch (error) {
@@ -41,10 +41,10 @@ const Movies = () => {
         moviesForSearch();
       }
     }, [query])
-  
+
   return (
     <div>
-      <SearchBar onSubmit={userSearchRequest}/>
+     {location.pathname === '/movies' && <SearchBar onSubmit={userSearchRequest}/>} 
       <Outlet />
       {query && <ul>
         {searchResult.map(movie => {

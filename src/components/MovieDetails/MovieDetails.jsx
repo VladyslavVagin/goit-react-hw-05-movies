@@ -23,7 +23,6 @@ const MovieDetails = () => {
           overview: data.overview,
           genres: data.genres,
         });
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -42,7 +41,7 @@ const MovieDetails = () => {
         <h2>{title}</h2>
         <p>{`User score: ${(userScore*10).toFixed(0)}%`}</p>
         <p>{overview}</p>
-       <p>{genres && genres.map(el => el.name)}</p>
+       <p>{genres && genres.map(el => el.name).join(' / ')}</p>
       </div>
     </div>
 
