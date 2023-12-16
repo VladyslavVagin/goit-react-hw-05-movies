@@ -1,15 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { InputSearch, Form, ButtonSearch } from './SearchBar.styled';
 
-const SearchBar = ({onSubmit}) => {
-
+const SearchBar = ({ onSubmit }) => {
   return (
     <div>
-        <form onSubmit={onSubmit}>
-            <input type='text' placeholder='Search...' autoComplete='false'/>
-            <button type='submit'>Search</button>
-        </form>
+      <Form onSubmit={onSubmit}>
+          <InputSearch
+            type="text"
+            placeholder="Search..."
+            autoComplete="false"
+          />
+          <ButtonSearch type="submit">Search</ButtonSearch>
+      </Form>
     </div>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;
