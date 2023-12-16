@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import getMoviesPopular from '../../services/request-api';
+import { getMoviesPopular } from 'services/request-api';
 import { ListMovies, ListItem, TitleMovie } from './Home.styled';
 import { Link } from 'react-router-dom';
 

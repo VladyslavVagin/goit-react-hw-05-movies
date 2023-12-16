@@ -5,7 +5,7 @@ const SearchBar = ({onSubmit}) => {
   return (
     <div>
         <form onSubmit={onSubmit}>
-            <input type='text' placeholder='Search...' autoComplete='false' autoFocus/>
+            <input type='text' placeholder='Search...' autoComplete='false'/>
             <button type='submit'>Search</button>
         </form>
     </div>

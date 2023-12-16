@@ -1,11 +1,48 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getMovieSearch } from 'services/request-api';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SearchBar from 'components/SearchBar/SearchBar';
 
 const Movies = () => {
+  const [searchResult, setSearchResult] = useState([]);
+  const [querySearch, setQuery] = useSearchParams();
+  const query = querySearch.get('query') ?? '';
+
+  const userSearchRequest = (event) => {
+       event.preventDefault();
+       const searchQuery = event.target.children[0].value;
+       if(searchQuery.trim() === '') {
+        return setQuery({});
+       }
+       setQuery({query: searchQuery});
+       console.log(searchQuery);
+    }
+
+    useEffect(() => {
+      if(query !== '') {
+        const moviesForSearch = async () => {
+          try {
+          const response = await getMovieSearch(query);
+          const movies = response.data.results;
+          if(movies.length > 0) {
+            setSearchResult(movies);
+            console.log(movies);
+            Notify.success(`We found ${response.data.total_results} movies`);
+          } 
+          } catch (error) {
+            console.log(error);
+            Notify.failure('Error, server not answer');
+          }
+        }
+        moviesForSearch();
+      }
+    }, [query])
+  
+   console.log(searchResult);
   return (
     <div>
-      <SearchBar />
+      <SearchBar onSubmit={userSearchRequest}/>
       <Outlet />
     </div>
   );
