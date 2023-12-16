@@ -19,7 +19,7 @@ export async function getMovieSearch(query) {
 
  export async function getMovieDetails(movieId) {
   const response = await axios(
-    `${BASE_URL}/movies/${movieId}?api_key=${API_KEY}`
+    `${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`
   );
   return response;
 }
