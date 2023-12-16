@@ -13,7 +13,6 @@ const MovieDetails = () => {
       return;
     }
     const showDetails = async () => {
-      console.log(movieId);
       try {
         const response = await getMovieDetails(movieId);
         const data = response.data;
@@ -24,7 +23,7 @@ const MovieDetails = () => {
           overview: data.overview,
           genres: data.genres,
         });
-        console.log(dataMovie);
+        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -32,8 +31,21 @@ const MovieDetails = () => {
     showDetails();
   }, [movieId]);
 
+  const {poster, title, userScore, overview, genres} = dataMovie;
+  const base_url_image = 'https://image.tmdb.org/t/p/w500/';
+
   return <div>
     <Link to={backLinkRef.current}>Back</Link>
+    <div>
+      <img src={base_url_image + poster} alt={`Poster for movie ${title}`} />
+      <div>
+        <h2>{title}</h2>
+        <p>{`User score: ${(userScore*10).toFixed(0)}%`}</p>
+        <p>{overview}</p>
+       <p>{genres && genres.map(el => el.name)}</p>
+      </div>
+    </div>
+
   </div>;
 };
 
