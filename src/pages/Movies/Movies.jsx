@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getMovieSearch } from 'services/request-api';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SearchBar from 'components/SearchBar/SearchBar';
+import { Container } from './Movies.styled';
 
 const Movies = () => {
   const [searchResult, setSearchResult] = useState([]);
@@ -42,7 +43,7 @@ const Movies = () => {
     }, [query])
 
   return (
-    <div>
+    <Container>
      {location.pathname === '/movies' && <SearchBar onSubmit={userSearchRequest}/>} 
       <Outlet />
       {query && <ul>
@@ -56,7 +57,7 @@ const Movies = () => {
           );
         })}
       </ul>}
-    </div>
+    </Container>
   );
 };
 

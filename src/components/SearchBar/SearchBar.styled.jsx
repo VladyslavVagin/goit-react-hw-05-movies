@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const InputSearch = styled.input`
-  max-width: 600px;
-  width: 100%;
+  width: 90%;
   padding: 10px;
   margin-top: 10px;
   outline: none;
@@ -16,7 +15,7 @@ export const InputSearch = styled.input`
 
 export const Form = styled.form`
   position: relative;
-  max-width: 600px;
+  max-width: 900px;
   width: 100%;
 `;
 
@@ -24,11 +23,12 @@ export const ButtonSearch = styled.button`
   position: absolute;
   top: 60%;
   cursor: pointer;
-  left: 96%;
+  left: 88%;
   transform: translate(-50%, -50%);
-  padding: 10.6px 30px 10px 30px;
-  background: blue;
-  color: #ffffff;
+  padding: 10.6px 10px 10px 10px;
+  margin: 0;
+  background: #dddddd;
+  color: #ff9812;
   text-transform: uppercase;
   outline: none;
   border: 1px solid black;
@@ -37,5 +37,7 @@ export const ButtonSearch = styled.button`
   transition: all 600ms ease;
   &:hover {
     background: orange;
+    color: #dddddd;
+    font-weight: 700;
   }
 `;
