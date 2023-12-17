@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getActors } from 'services/request-api';
 import avatarAct from '../../images/avatar.jpg';
-import { ListActors, Actor, AvatarActor, ActorName } from './Cast.styled';
+import { ListActors, Actor, AvatarActor, ActorName, TitleReview } from './Cast.styled';
 
 const Cast = () => {
   const [actors, setActors] = useState([]);
@@ -28,7 +28,7 @@ const Cast = () => {
 
   return (
     <div>
-    <h3>Cast</h3>
+    <TitleReview>Cast:</TitleReview>
     <ListActors>
       {actors.length > 0 &&
         actors.map(({profile_path, name, character, id}) => (

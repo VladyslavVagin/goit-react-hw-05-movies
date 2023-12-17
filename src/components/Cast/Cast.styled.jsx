@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 
+export const TitleReview = styled.h3`
+    color: orange;
+`
+
 export const ListActors = styled.ul`
   width: 100%;
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: 8px;
+  gap: 20px 8px;
   padding: 0;
 `;
 
