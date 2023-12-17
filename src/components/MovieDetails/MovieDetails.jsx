@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, Suspense } from 'react';
 import styled from 'styled-components';
 import { useLocation, useParams, NavLink, Link, Outlet } from 'react-router-dom';
 import { getMovieDetails } from 'services/request-api';
@@ -89,7 +89,9 @@ const MovieDetails = () => {
           <li><StyledLink to={'cast'}>Cast</StyledLink></li>
           <li><StyledLink to={'reviews'}>Reviews</StyledLink></li>
         </ListLinks>
+        <Suspense fallback={<div>Loading...</div>}>
         <Outlet/>
+        </Suspense>
       </div>
     </div>
   );
