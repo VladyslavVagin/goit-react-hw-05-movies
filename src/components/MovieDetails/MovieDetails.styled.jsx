@@ -13,4 +13,9 @@ export const Content = styled.div`
   column-gap: 16px;
   padding-bottom: 20px;
   border-bottom: 1px solid gray;
+  @media screen and (max-width: 680px) {
+    flex-direction: column;
+    max-width: 300px;
+    margin: 0 auto;
+  }
 `;
