@@ -26,14 +26,14 @@ export async function getMovieSearch(query) {
 
  export async function getActors(movieId) {
   const response = await axios(
-    `${BASE_URL}/movies/${movieId}/credits?api_key=${API_KEY}`
+    `${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`
   );
   return response;
 }
 
  export async function getMovieReviews(movieId) {
   const response = await axios(
-    `${BASE_URL}/movies/${movieId}/reviews?api_key=${API_KEY}`
+    `${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}`
   );
   return response;
 }
