@@ -2,21 +2,35 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useLocation, useParams, NavLink, Link, Outlet } from 'react-router-dom';
 import { getMovieDetails } from 'services/request-api';
-import { Content, Image } from './MovieDetails.styled';
+import { Content, Image, ListLinks, BackBox } from './MovieDetails.styled';
 import picture from '../../images/noimage.jpg'
 
-const StyledBack = styled(NavLink)`
+const StyledLink = styled(NavLink)`
   display: inline-flex;
-  padding: 20px;
+  padding: 8px 20px;
   color: #000000;
   text-decoration: none;
   text-transform: uppercase;
+  border: 1px solid black;
+  border-radius: 20px;
   transition: all 400ms ease;
-  &:hover {
+  &.active {
     color: #e0921c;
     transform: scale(1.2);
+    border: 1px solid #e0921c;
   }
 `;
+
+const LinkStyled = styled(Link)`
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+  transition: all 400ms ease;
+  &:hover {
+    color: orange;
+    transform: scale(1.2);
+  }
+`
 
 const MovieDetails = () => {
   const [dataMovie, setDataMovie] = useState({});
@@ -52,7 +66,9 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <StyledBack to={backLinkRef.current}>&lt;&lt;&lt; Back</StyledBack>
+      <BackBox>
+      <LinkStyled to={backLinkRef.current}>&lt;&lt;&lt; Back</LinkStyled>
+      </BackBox>
       <Content>
         <Image
           src={poster ? base_url_image + poster : picture}
@@ -69,10 +85,10 @@ const MovieDetails = () => {
       </Content>
       <div>
         <h4>Additional information</h4>
-        <ul>
-          <li><Link to={'cast'}>Cast</Link></li>
-          <li><Link to={'reviews'}>Reviews</Link></li>
-        </ul>
+        <ListLinks>
+          <li><StyledLink to={'cast'}>Cast</StyledLink></li>
+          <li><StyledLink to={'reviews'}>Reviews</StyledLink></li>
+        </ListLinks>
         <Outlet/>
       </div>
     </div>

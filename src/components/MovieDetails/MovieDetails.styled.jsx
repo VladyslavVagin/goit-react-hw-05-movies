@@ -19,3 +19,15 @@ export const Content = styled.div`
     margin: 0 auto;
   }
 `;
+
+export const ListLinks = styled.ul`
+  list-style-type: none;
+  display: flex;
+  column-gap: 20px;
+  padding: 0;
+  font-size: 20px;
+`
+
+export const BackBox = styled.div`
+  padding: 20px;
+`
