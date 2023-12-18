@@ -1,12 +1,14 @@
 import { Outlet, useSearchParams, Link, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { getMovieSearch } from 'services/request-api';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SearchBar from 'components/SearchBar/SearchBar';
 import { Container } from './Movies.styled';
+import Loader from 'components/Loader/Loader';
 
 const Movies = () => {
   const [searchResult, setSearchResult] = useState([]);
+  const [isLoadingList, setIsLoadingList] = useState(false);
   const [querySearch, setQuery] = useSearchParams();
   const location = useLocation();
   const query = querySearch.get('query') ?? '';
@@ -28,6 +30,7 @@ const Movies = () => {
     if (query !== '') {
       const moviesForSearch = async () => {
         try {
+          setIsLoadingList(true);
           const response = await getMovieSearch(query);
           const movies = response.data.results;
           if (movies.length > 0) {
@@ -36,6 +39,8 @@ const Movies = () => {
         } catch (error) {
           console.log(error);
           Notify.failure('Error, server not answer');
+        } finally {
+          setIsLoadingList(false);
         }
       };
       moviesForSearch();
@@ -44,10 +49,13 @@ const Movies = () => {
 
   return (
     <Container>
+      {isLoadingList && <Loader/>}
       {location.pathname === '/movies' && (
         <SearchBar onSubmit={userSearchRequest} />
       )}
+      <Suspense fallback={<Loader/>}>
         <Outlet />
+      </Suspense>
       {query && (
         <ul>
           {searchResult.map(movie => {

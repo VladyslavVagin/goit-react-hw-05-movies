@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-export const TitleReview = styled.h3`
-    color: orange;
-`
-
 export const ListActors = styled.ul`
   width: 100%;
   list-style-type: none;

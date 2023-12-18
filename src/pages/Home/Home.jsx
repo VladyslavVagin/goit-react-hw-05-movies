@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getMoviesPopular } from 'services/request-api';
 import { ListMovies, ListItem, TitleMovie, ImageM } from './Home.styled';
 import { NavLink } from 'react-router-dom';
+import Loader from 'components/Loader/Loader';
 import styled from 'styled-components';
 
 const StyledLinkNav = styled(NavLink)`
@@ -10,15 +11,19 @@ const StyledLinkNav = styled(NavLink)`
 `
 
 const Home = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [popularMovies, setPopularMovies] = useState([]);
 
   useEffect(() => {
     const popularMoviesShow = async () => {
+      setIsLoading(true);
       try {
         const response = await getMoviesPopular();
         setPopularMovies([...response.data.results]);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     popularMoviesShow();
@@ -29,7 +34,8 @@ const Home = () => {
   return (
     <div>
       <h1>Tranding today</h1>
-      <ListMovies>
+      {isLoading && <Loader/>}
+      {!isLoading && <ListMovies>
         {popularMovies.map(movie => {
           return (
             <ListItem key={movie.id}>
@@ -43,7 +49,7 @@ const Home = () => {
             </ListItem>
           );
         })}
-      </ListMovies>
+      </ListMovies>}
     </div>
   );
 };
