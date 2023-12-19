@@ -10,9 +10,9 @@ const BASE_URL = 'https://api.themoviedb.org/3';
   return response;
 }
 
-export async function getMovieSearch(query) {
+export async function getMovieSearch(query, page) {
   const response = await axios(
-    `${BASE_URL}/search/movie?query=${query}&api_key=${API_KEY}`
+    `${BASE_URL}/search/movie?query=${query}&page=${page}&api_key=${API_KEY}`
   );
   return response;
 }

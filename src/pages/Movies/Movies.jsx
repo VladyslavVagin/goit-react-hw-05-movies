@@ -1,14 +1,19 @@
-import { Outlet, useSearchParams, Link, useLocation } from 'react-router-dom';
-import { useEffect, useState, Suspense } from 'react';
+import { Outlet, useSearchParams, useLocation } from 'react-router-dom';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import { getMovieSearch } from 'services/request-api';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SearchBar from 'components/SearchBar/SearchBar';
 import { Container } from './Movies.styled';
 import Loader from 'components/Loader/Loader';
+import Pagination from 'components/Pagination/Pagination';
+
+const ListMovies = lazy(() => import('components/ListMovies/ListMovies'));
 
 const Movies = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [isLoadingList, setIsLoadingList] = useState(false);
+  const [page, setPage] = useState(null);
+  const [totalPages, setTotalPages] = useState(null);
   const [querySearch, setQuery] = useSearchParams();
   const location = useLocation();
   const query = querySearch.get('query') ?? '';
@@ -21,20 +26,22 @@ const Movies = () => {
       return setQuery({});
     }
     setQuery({ query: searchQuery });
+    setPage(1);
     event.target.children[0].value = '';
     location.state?.to('/movies');
   };
 
   //============================ If change query in SearchParams, make request to API for search movies
   useEffect(() => {
-    if (query.trim() !== '') {
+    if (query.trim() !== '' && page !== null) {
       const moviesForSearch = async () => {
         try {
           setIsLoadingList(true);
-          const response = await getMovieSearch(query);
+          const response = await getMovieSearch(query, page);
           const movies = response.data.results;
           if (movies.length > 0) {
             setSearchResult(movies);
+            setTotalPages(response.data.total_pages);
           } else {
             Notify.failure('Movies NOT found')
           }
@@ -47,8 +54,9 @@ const Movies = () => {
       }
       moviesForSearch();
     }
-  }, [query]);
+  }, [page, query]);
 
+  console.log(totalPages);
   return (
     <Container>
       {isLoadingList && <Loader/>}
@@ -58,19 +66,8 @@ const Movies = () => {
       <Suspense fallback={<Loader/>}>
         <Outlet />
       </Suspense>
-      {query && (
-        <ul>
-          {searchResult.map(movie => {
-            return (
-              <li key={movie.id}>
-                <Link to={`${movie.id}`} state={{ from: location }}>
-                  <p>{movie.title || movie.name}</p>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      {query && <ListMovies searchResult={searchResult}/>}
+      {totalPages > 1 && <Pagination totalPages={totalPages} onPageChange={(event) => setPage(event.selected)}/>}
     </Container>
   );
 };
