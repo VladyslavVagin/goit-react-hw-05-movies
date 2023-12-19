@@ -27,7 +27,7 @@ const Movies = () => {
 
   //============================ If change query in SearchParams, make request to API for search movies
   useEffect(() => {
-    if (query !== '') {
+    if (query.trim() !== '') {
       const moviesForSearch = async () => {
         try {
           setIsLoadingList(true);
@@ -35,6 +35,8 @@ const Movies = () => {
           const movies = response.data.results;
           if (movies.length > 0) {
             setSearchResult(movies);
+          } else {
+            Notify.failure('Movies NOT found')
           }
         } catch (error) {
           console.log(error);
@@ -42,7 +44,7 @@ const Movies = () => {
         } finally {
           setIsLoadingList(false);
         }
-      };
+      }
       moviesForSearch();
     }
   }, [query]);

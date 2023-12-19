@@ -3,14 +3,17 @@ import { useParams } from 'react-router-dom';
 import { getActors } from 'services/request-api';
 import avatarAct from '../../images/avatar.jpg';
 import { ListActors, Actor, AvatarActor, ActorName } from './Cast.styled';
+import Loader from 'components/Loader/Loader';
 
 const Cast = () => {
   const [actors, setActors] = useState([]);
+  const [castLoading, setCastLoading] = useState(false);
   const { movieId } = useParams();
 
   useEffect(() => {
     const showActors = async () => {
       try {
+        setCastLoading(true);
         const response = await getActors(movieId);
         const actorsData = response.data.cast;
         if (actorsData.length !== 0) {
@@ -18,6 +21,8 @@ const Cast = () => {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setCastLoading(false);
       }
     };
 
@@ -28,7 +33,8 @@ const Cast = () => {
 
   return (
     <div>
-    <ListActors>
+      {castLoading && <Loader/>}
+      {!castLoading &&  <ListActors>
       {actors.length > 0 ?
         actors.map(({profile_path, name, character, id}) => (
           <Actor key={id}>
@@ -37,7 +43,8 @@ const Cast = () => {
             <p> <strong>Character:</strong> <em>{character || 'unknown'}</em></p>
           </Actor>
         )) : <p><strong>No information about actors</strong></p>}
-    </ListActors></div>
+    </ListActors>}
+   </div>
   );
 };
 

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const LoaderContainer = styled.div`
   position: fixed;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 999;
   min-width: 100vw;
   min-height: 100vh;
   top: 0;
