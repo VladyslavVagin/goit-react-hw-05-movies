@@ -12,7 +12,7 @@ const ListMovies = lazy(() => import('components/ListMovies/ListMovies'));
 const Movies = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [isLoadingList, setIsLoadingList] = useState(false);
-  const [page, setPage] = useState(null);
+  const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(null);
   const [querySearch, setQuery] = useSearchParams();
   const location = useLocation();
@@ -33,7 +33,7 @@ const Movies = () => {
 
   //============================ If change query in SearchParams, make request to API for search movies
   useEffect(() => {
-    if (query.trim() !== '' && page !== null) {
+    if (query.trim() !== '' && page !== 0) {
       const moviesForSearch = async () => {
         try {
           setIsLoadingList(true);
@@ -56,7 +56,6 @@ const Movies = () => {
     }
   }, [page, query]);
 
-  console.log(totalPages);
   return (
     <Container>
       {isLoadingList && <Loader/>}
@@ -67,7 +66,7 @@ const Movies = () => {
         <Outlet />
       </Suspense>
       {query && <ListMovies searchResult={searchResult}/>}
-      {totalPages > 1 && <Pagination totalPages={totalPages} onPageChange={(event) => setPage(event.selected)}/>}
+      {totalPages > 1 && location.pathname === '/movies' && <Pagination totalPages={totalPages} onPageChange={(event) => setPage(event.selected+1)}/>}
     </Container>
   );
 };

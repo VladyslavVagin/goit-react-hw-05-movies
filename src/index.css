@@ -13,3 +13,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.pagination {
+  list-style: none;
+  height: 31.5px;
+  width: 31.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.active-page {
+  background-color: #1e50ff;
+  border-radius: 50%;
+}
+.page-item {
+  list-style: none;
+  min-height: 26px;
+  min-width: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2px;
+  border: 1px solid black;
+  border-radius: 100px;
+}

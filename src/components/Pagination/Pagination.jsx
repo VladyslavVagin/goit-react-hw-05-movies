@@ -1,15 +1,35 @@
 import ReactPaginate from 'react-paginate';
+import styled from 'styled-components';
+import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai"; 
+import { IconContext } from "react-icons"; 
+
+const ContainerPagination = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
 
 const Pagination = ({totalPages, onPageChange}) => {
   return (
-    <div><ReactPaginate
+    <ContainerPagination><ReactPaginate
     containerClassName={"pagination"}
     pageClassName={"page-item"}
-    activeClassName={"active"}
+    activeClassName={"active-page"}
     onPageChange={onPageChange}
     pageCount={totalPages}
     breakLabel="..."
-  /></div>
+    previousLabel={
+        <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
+          <AiFillLeftCircle />
+        </IconContext.Provider>
+      }
+      nextLabel={
+        <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
+          <AiFillRightCircle />
+        </IconContext.Provider>
+      }
+  /></ContainerPagination>
   )
 }
 
