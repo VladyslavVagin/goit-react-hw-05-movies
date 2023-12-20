@@ -17,7 +17,8 @@ const Pagination = ({totalPages, onPageChange}) => {
     pageClassName={"page-item"}
     activeClassName={"active-page"}
     onPageChange={onPageChange}
-    pageRangeDisplayed={3}
+    initialPage={JSON.parse(localStorage.getItem('page')) - 1}
+    pageRangeDisplayed={2}
     pageCount={totalPages}
     breakLabel="..."
     previousLabel={

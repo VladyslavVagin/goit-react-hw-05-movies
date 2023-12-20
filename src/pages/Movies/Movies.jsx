@@ -27,6 +27,7 @@ const Movies = () => {
     }
     setQuery({ query: searchQuery });
     setPage(1);
+    localStorage.setItem('page', JSON.stringify(1));
     event.target.children[0].value = '';
     location.state?.to('/movies');
   };
@@ -37,6 +38,7 @@ const Movies = () => {
       const moviesForSearch = async () => {
         try {
           setIsLoadingList(true);
+          localStorage.setItem('page', JSON.stringify(page));
           const response = await getMovieSearch(query, page);
           const movies = response.data.results;
           if (movies.length > 0) {
@@ -66,7 +68,7 @@ const Movies = () => {
         <Outlet />
       </Suspense>
       {query && <ListMovies searchResult={searchResult}/>}
-      {totalPages > 1 && location.pathname === `/movies` && query && <Pagination totalPages={totalPages} onPageChange={(event) => setPage(event.selected+1)}/>}
+      {totalPages > 1 && location.pathname === `/movies` && query && <Pagination totalPages={totalPages} onPageChange={(event) => setPage(event.selected + 1)}/>}
     </Container>
   );
 };
