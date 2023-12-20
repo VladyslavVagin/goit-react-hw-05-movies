@@ -1,19 +1,40 @@
 import { Link, useLocation } from 'react-router-dom';
+import {
+  ListSearchMovies,
+  ListItemSearch,
+  TitleMovie,
+} from './ListMovies.styled';
+import { base_url_image } from 'services/request-api';
+import picture from '../../images/noimage.jpg';
+import styled from 'styled-components';
+
+const StyleLinks = styled(Link)`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+`;
 
 const ListMovies = ({ searchResult }) => {
   const location = useLocation();
   return (
-    <ul>
-      {searchResult.map(movie => {
+    <ListSearchMovies>
+      {searchResult.map(({ id, title, name, poster_path }) => {
         return (
-          <li key={movie.id}>
-            <Link to={`${movie.id}`} state={{ from: location }}>
-              <p>{movie.title || movie.name}</p>
-            </Link>
-          </li>
+          <ListItemSearch key={id}>
+            <StyleLinks to={`${id}`} state={{ from: location }}>
+              <img
+                src={poster_path ? base_url_image + poster_path : picture}
+                alt={title || name}
+                width={300}
+              />
+              <TitleMovie>{title || name}</TitleMovie>
+            </StyleLinks>
+          </ListItemSearch>
         );
       })}
-    </ul>
+    </ListSearchMovies>
   );
 };
 

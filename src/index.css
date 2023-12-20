@@ -26,17 +26,20 @@ code {
 }
 
 .active-page {
-  background-color: #1e50ff;
+  background-color: orange;
+  color: black;
+  font-weight: 700;
   border-radius: 50%;
 }
 .page-item {
   list-style: none;
-  min-height: 26px;
-  min-width: 26px;
+  min-height: 36px;
+  min-width: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 2px;
   border: 1px solid black;
   border-radius: 100px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }

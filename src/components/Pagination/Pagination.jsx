@@ -17,15 +17,16 @@ const Pagination = ({totalPages, onPageChange}) => {
     pageClassName={"page-item"}
     activeClassName={"active-page"}
     onPageChange={onPageChange}
+    pageRangeDisplayed={3}
     pageCount={totalPages}
     breakLabel="..."
     previousLabel={
-        <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
+        <IconContext.Provider value={{ color: "#cf9d13", size: "36px" }}>
           <AiFillLeftCircle />
         </IconContext.Provider>
       }
       nextLabel={
-        <IconContext.Provider value={{ color: "#B8C1CC", size: "36px" }}>
+        <IconContext.Provider value={{ color: "#cf9d13", size: "36px" }}>
           <AiFillRightCircle />
         </IconContext.Provider>
       }

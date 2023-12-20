@@ -4,6 +4,7 @@ import { ListMovies, ListItem, TitleMovie, ImageM } from './Home.styled';
 import { NavLink } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import styled from 'styled-components';
+import { base_url_image } from 'services/request-api';
 
 const StyledLinkNav = styled(NavLink)`
   text-decoration: none;
@@ -28,8 +29,6 @@ const Home = () => {
     };
     popularMoviesShow();
   }, []);
-
-  const base_url_image = 'https://image.tmdb.org/t/p/w500/';
 
   return (
     <div>

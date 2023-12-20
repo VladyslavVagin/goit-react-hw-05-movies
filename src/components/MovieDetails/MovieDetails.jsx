@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import { getMovieDetails } from 'services/request-api';
 import { Content, Image, ListLinks, BackBox } from './MovieDetails.styled';
+import { base_url_image } from 'services/request-api';
 import picture from '../../images/noimage.jpg';
 import Loader from 'components/Loader/Loader';
 
@@ -73,7 +74,6 @@ const MovieDetails = () => {
   }, [movieId]);
 
   const { poster, title, userScore, overview, genres, year } = dataMovie;
-  const base_url_image = 'https://image.tmdb.org/t/p/w500/';
 
   return (
     <div>
