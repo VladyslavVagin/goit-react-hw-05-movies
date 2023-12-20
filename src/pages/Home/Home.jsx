@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getMoviesPopular } from 'services/request-api';
-import { ListMovies, ListItem, TitleMovie, ImageM } from './Home.styled';
+import { ListMovies, ListItem, TitleMovie, ImageM, MainTitle } from './Home.styled';
 import { NavLink } from 'react-router-dom';
 import Loader from 'components/Loader/Loader';
 import styled from 'styled-components';
@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Tranding today</h1>
+      <MainTitle> DAILY TOP-20</MainTitle>
       {isLoading && <Loader/>}
       {!isLoading && <ListMovies>
         {popularMovies.map(movie => {

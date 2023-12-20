@@ -16,9 +16,8 @@ export const ListItemSearch = styled.li`
   font-weight: 700;
   overflow: hidden;
   margin: 0 auto;
-  width: 300px;
+  width: 312px;
   transition: all 600ms ease;
-  border-radius: 20px;
 `;
 
 export const TitleMovie = styled.p`
@@ -31,5 +30,6 @@ export const TitleMovie = styled.p`
   padding: 0;
 `;
 export const ImageMovies = styled.img`
-  transition: all 600ms ease;
+  border: 2px solid orange;
+  box-shadow: rgba(255, 255, 255, 0.3) 0px 1px 2px 0px, rgba(255, 255, 255, 0.15) 0px 2px 6px 2px;
 `

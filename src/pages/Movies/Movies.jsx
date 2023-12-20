@@ -66,7 +66,7 @@ const Movies = () => {
         <Outlet />
       </Suspense>
       {query && <ListMovies searchResult={searchResult}/>}
-      {totalPages > 1 && location.pathname === `/movies` && <Pagination totalPages={totalPages} onPageChange={(event) => setPage(event.selected+1)}/>}
+      {totalPages > 1 && location.pathname === `/movies` && query && <Pagination totalPages={totalPages} onPageChange={(event) => setPage(event.selected+1)}/>}
     </Container>
   );
 };
