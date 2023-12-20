@@ -18,6 +18,9 @@ export const ListItemSearch = styled.li`
   margin: 0 auto;
   width: 312px;
   transition: all 600ms ease;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const TitleMovie = styled.p`
@@ -32,4 +35,5 @@ export const TitleMovie = styled.p`
 export const ImageMovies = styled.img`
   border: 2px solid orange;
   box-shadow: rgba(255, 255, 255, 0.3) 0px 1px 2px 0px, rgba(255, 255, 255, 0.15) 0px 2px 6px 2px;
+  transition: all 600ms ease;
 `

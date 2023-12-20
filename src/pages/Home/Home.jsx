@@ -42,6 +42,7 @@ const Home = () => {
                 <ImageM
                   src={base_url_image + movie.poster_path}
                   alt={movie.name || movie.title}
+                  width={308}
                 />
                 <TitleMovie>{movie.title || movie.name}</TitleMovie>
               </StyledLinkNav>

@@ -28,7 +28,7 @@ const ListMovies = ({ searchResult }) => {
               <ImageMovies
                 src={poster_path ? base_url_image + poster_path : picture}
                 alt={title || name}
-                width={300}
+                width={308}
               />
               <TitleMovie>{title || name}</TitleMovie>
             </StyleLinks>
