@@ -19,7 +19,7 @@ export const ListItemSearch = styled.li`
   width: 312px;
   transition: all 600ms ease;
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 

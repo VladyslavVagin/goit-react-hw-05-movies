@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getActors } from 'services/request-api';
 import avatarAct from '../../images/avatar.jpg';
-import { ListActors, Actor, AvatarActor, ActorName } from './Cast.styled';
+import { ListActors, Actor, AvatarActor, ActorName, ActorCharacter } from './Cast.styled';
 import Loader from 'components/Loader/Loader';
 
 const Cast = () => {
@@ -33,18 +33,34 @@ const Cast = () => {
 
   return (
     <div>
-      {castLoading && <Loader/>}
-      {!castLoading &&  <ListActors>
-      {actors.length > 0 ?
-        actors.map(({profile_path, name, character, id}) => (
-          <Actor key={id}>
-            <AvatarActor src={profile_path ? base_url_image + profile_path : avatarAct} alt={name} />
-            <ActorName>{name || 'unknown'}</ActorName>
-            <p> <strong>Character:</strong> <em>{character || 'unknown'}</em></p>
-          </Actor>
-        )) : <p><strong>No information about actors</strong></p>}
-    </ListActors>}
-   </div>
+      {castLoading && <Loader />}
+      {!castLoading && (
+        <ListActors>
+          {actors.length > 0 ? (
+            actors.map(({ profile_path, name, character, id }) => (
+              <Actor key={id}>
+                <AvatarActor
+                  src={profile_path ? base_url_image + profile_path : avatarAct}
+                  alt={name}
+                />
+                <div>
+                  <ActorName>{name || 'unknown'}</ActorName>
+                  <ActorCharacter>
+                    {' '}
+                    <strong>Character:</strong>{' '}
+                    <em>{character || 'unknown'}</em>
+                  </ActorCharacter>
+                </div>
+              </Actor>
+            ))
+          ) : (
+            <p>
+              <strong>No information about actors</strong>
+            </p>
+          )}
+        </ListActors>
+      )}
+    </div>
   );
 };
 

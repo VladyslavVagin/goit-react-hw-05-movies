@@ -15,7 +15,6 @@ export const ListItem = styled.li`
   flex-direction: column;
   font-size: 32px;
   font-weight: 700;
-  overflow: hidden;
   margin: 0 auto;
   width: 312px;
   overflow: hidden;
