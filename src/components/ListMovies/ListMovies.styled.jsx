@@ -17,6 +17,8 @@ export const ListItemSearch = styled.li`
   overflow: hidden;
   margin: 0 auto;
   width: 300px;
+  transition: all 600ms ease;
+  border-radius: 20px;
 `;
 
 export const TitleMovie = styled.p`
@@ -28,3 +30,6 @@ export const TitleMovie = styled.p`
   margin: 0;
   padding: 0;
 `;
+export const ImageMovies = styled.img`
+  transition: all 600ms ease;
+`

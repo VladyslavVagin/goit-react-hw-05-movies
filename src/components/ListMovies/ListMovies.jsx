@@ -3,6 +3,7 @@ import {
   ListSearchMovies,
   ListItemSearch,
   TitleMovie,
+  ImageMovies
 } from './ListMovies.styled';
 import { base_url_image } from 'services/request-api';
 import picture from '../../images/noimage.jpg';
@@ -24,7 +25,7 @@ const ListMovies = ({ searchResult }) => {
         return (
           <ListItemSearch key={id}>
             <StyleLinks to={`${id}`} state={{ from: location }}>
-              <img
+              <ImageMovies
                 src={poster_path ? base_url_image + poster_path : picture}
                 alt={title || name}
                 width={300}
