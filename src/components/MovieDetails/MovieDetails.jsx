@@ -30,6 +30,9 @@ const StyledLink = styled(NavLink)`
   border: 1px solid black;
   border-radius: 20px;
   transition: all 400ms ease;
+  border-radius: 45px;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow: 5px 5px 12px #8b8b8b, -5px -5px 12px #ffffff;
   &.active {
     color: #e0921c;
     transform: scale(1.2);
