@@ -8,7 +8,7 @@ import {
   Outlet,
 } from 'react-router-dom';
 import { getMovieDetails } from 'services/request-api';
-import { Content, Image, ListLinks, BackBox } from './MovieDetails.styled';
+import { Content, Image, ListLinks, BackBox, AdditionalInfo, NameMovie } from './MovieDetails.styled';
 import { base_url_image } from 'services/request-api';
 import picture from '../../images/noimage.jpg';
 import Loader from 'components/Loader/Loader';
@@ -56,6 +56,7 @@ const MovieDetails = () => {
         setIsLoading(true);
         const response = await getMovieDetails(movieId);
         const data = response.data;
+        console.log(data);
         setDataMovie({
           poster: data.poster_path,
           title: data.title,
@@ -89,10 +90,10 @@ const MovieDetails = () => {
               alt={`Poster for movie ${title}`}
             />
             <div>
-              <h2>
+              <NameMovie>
                 {title}&nbsp;{year ? `(${year.slice(0, 4)})` : ''}
-              </h2>
-              <p>{`User score: ${(userScore * 10).toFixed(0)}%`}</p>
+              </NameMovie>
+              <p>User score: <span>{(userScore * 10).toFixed(0)}%</span></p>
               <h3>Overview</h3>
               <p>{overview || 'Description will be added later'}</p>
               <h3>Genres</h3>
@@ -100,7 +101,7 @@ const MovieDetails = () => {
             </div>
           </Content>
           <div>
-            <h4>Additional information</h4>
+            <AdditionalInfo>Additional information</AdditionalInfo>
             <ListLinks>
               <li>
                 <StyledLink to={'cast'}>Cast</StyledLink>

@@ -31,3 +31,10 @@ export const ListLinks = styled.ul`
 export const BackBox = styled.div`
   padding: 20px;
 `
+
+export const AdditionalInfo = styled.h4`
+  font-size: 1.5rem;
+`
+export const NameMovie = styled.h4`
+  font-size: 2rem;
+`
