@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import styled from 'styled-components';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { Container, Header, ListHeader } from './SharedLayout.styled';
 import Loader from "components/Loader/Loader";
 
@@ -19,13 +19,14 @@ const StyledLink = styled(NavLink)`
 `;
 
 const SharedLayout = () => {
+  const location = useLocation();
   return (
     <Container>
       <Header>
         <nav>
           <ListHeader>
             <li>
-              <StyledLink to={'/'}>Home</StyledLink>
+              <StyledLink to={'/'} className={location.pathname === '/' && location.pathname !== '/movies'  ? 'active' : ''}>Home</StyledLink>
             </li>
             <li>
               <StyledLink to={'/movies'}>movies</StyledLink>
