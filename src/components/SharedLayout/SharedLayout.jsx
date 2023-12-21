@@ -8,8 +8,13 @@ const StyledLink = styled(NavLink)`
   color: black;
   text-decoration: none;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 1.5rem;
   &.active {
     color: orange;
+    border: 2px solid orange;
+    padding: 10px;
+    background-color: white;
   }
 `;
 

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieReviews } from 'services/request-api';
-import { ListReviews } from './Reviews.styled';
+import { ListReviews, AuthorName, NickName } from './Reviews.styled';
 import Loader from 'components/Loader/Loader';
 
 const Reviews = () => {
@@ -35,7 +35,7 @@ const Reviews = () => {
           {reviewsArray.length > 0 ? (
             reviewsArray.map(({ id, author, content }) => (
               <li key={id}>
-                <h4>Author: {author}</h4>
+                <AuthorName>Author: <NickName>{author}</NickName></AuthorName>
                 <p>{content}</p>
                 <hr />
               </li>

@@ -21,7 +21,9 @@ export const Actor = styled.li`
   background-color: #696969;
   border-radius: 20px;
   padding: 10px;
-  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  -webkit-box-shadow: 1px 8px 21px 1px rgba(255, 153, 0, 1);
+  -moz-box-shadow: 1px 8px 21px 1px rgba(255, 153, 0, 1);
+  box-shadow: 1px 8px 21px 1px rgba(255, 153, 0, 1);
 `;
 
 export const AvatarActor = styled.img`
@@ -29,19 +31,22 @@ export const AvatarActor = styled.img`
 `;
 
 export const ActorName = styled.p`
-    font-size: 20px;
-    font-weight: 700;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background-color: #e0921c;
-    border-radius: 20px;
-`
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #e0921c;
+  border-radius: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
 export const ActorCharacter = styled.p`
-   overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   background-color: #e0921c;
   padding: 6px;
   border-radius: 10px;
-`
+`;

@@ -8,7 +8,15 @@ import {
   Outlet,
 } from 'react-router-dom';
 import { getMovieDetails } from 'services/request-api';
-import { Content, Image, ListLinks, BackBox, AdditionalInfo, NameMovie, UserScore } from './MovieDetails.styled';
+import {
+  Content,
+  Image,
+  ListLinks,
+  BackBox,
+  AdditionalInfo,
+  NameMovie,
+  UserScore,
+} from './MovieDetails.styled';
 import { base_url_image } from 'services/request-api';
 import picture from '../../images/noimage.jpg';
 import Loader from 'components/Loader/Loader';
@@ -91,11 +99,26 @@ const MovieDetails = () => {
               <NameMovie>
                 {title}&nbsp;{year ? `(${year.slice(0, 4)})` : ''}
               </NameMovie>
-              <p>User score: <UserScore style={userScore >= 7 ? {color: 'green', borderColor: 'green'}: {color: 'orange', borderColor: 'orange'}} >{(userScore * 10).toFixed(0)}%</UserScore></p>
+              <p>
+                <strong>User score: </strong>
+                <UserScore
+                  style={
+                    userScore >= 7
+                      ? { color: 'green', borderColor: 'green' }
+                      : userScore < 4
+                      ? { color: 'red', borderColor: 'red' }
+                      : { color: 'orange', borderColor: 'orange' }
+                  }
+                >
+                  {(userScore * 10).toFixed(0)}%
+                </UserScore>
+              </p>
               <h3>Overview</h3>
               <p>{overview || 'Description will be added later'}</p>
               <h3>Genres</h3>
-              <p>{genres && genres.map(el => el.name).join(' / ')}</p>
+              <p>
+                <i>{genres && genres.map(el => el.name).join(' / ')}</i>
+              </p>
             </div>
           </Content>
           <div>
