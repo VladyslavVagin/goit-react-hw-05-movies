@@ -1,6 +1,6 @@
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import styled from 'styled-components';
-import { Outlet, NavLink, useLocation } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import { Container, Header, ListHeader } from './SharedLayout.styled';
 import Loader from "components/Loader/Loader";
 
@@ -19,17 +19,18 @@ const StyledLink = styled(NavLink)`
 `;
 
 const SharedLayout = () => {
-  const location = useLocation();
+  const [isActive, setIsActive] = useState(true);
+
   return (
     <Container>
       <Header>
         <nav>
           <ListHeader>
             <li>
-              <StyledLink to={'/'} className={location.pathname === '/' && location.pathname !== '/movies'  ? 'active' : ''}>Home</StyledLink>
+              <StyledLink to={'/'} className={isActive && 'active'}>Home</StyledLink>
             </li>
             <li>
-              <StyledLink to={'/movies'}>movies</StyledLink>
+              <StyledLink to={'/movies'} onClick={() => setIsActive(false)}>movies</StyledLink>
             </li>
           </ListHeader>
         </nav>
