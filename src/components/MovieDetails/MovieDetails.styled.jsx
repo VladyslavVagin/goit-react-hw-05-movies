@@ -38,3 +38,9 @@ export const AdditionalInfo = styled.h4`
 export const NameMovie = styled.h4`
   font-size: 2rem;
 `
+export const UserScore = styled.span`
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 6px;
+  font-weight: 700;
+`

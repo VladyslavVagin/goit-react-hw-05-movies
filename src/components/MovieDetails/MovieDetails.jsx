@@ -8,7 +8,7 @@ import {
   Outlet,
 } from 'react-router-dom';
 import { getMovieDetails } from 'services/request-api';
-import { Content, Image, ListLinks, BackBox, AdditionalInfo, NameMovie } from './MovieDetails.styled';
+import { Content, Image, ListLinks, BackBox, AdditionalInfo, NameMovie, UserScore } from './MovieDetails.styled';
 import { base_url_image } from 'services/request-api';
 import picture from '../../images/noimage.jpg';
 import Loader from 'components/Loader/Loader';
@@ -56,7 +56,6 @@ const MovieDetails = () => {
         setIsLoading(true);
         const response = await getMovieDetails(movieId);
         const data = response.data;
-        console.log(data);
         setDataMovie({
           poster: data.poster_path,
           title: data.title,
@@ -75,7 +74,6 @@ const MovieDetails = () => {
   }, [movieId]);
 
   const { poster, title, userScore, overview, genres, year } = dataMovie;
-
   return (
     <div>
       {isLoading && <Loader />}
@@ -93,7 +91,7 @@ const MovieDetails = () => {
               <NameMovie>
                 {title}&nbsp;{year ? `(${year.slice(0, 4)})` : ''}
               </NameMovie>
-              <p>User score: <span>{(userScore * 10).toFixed(0)}%</span></p>
+              <p>User score: <UserScore style={userScore >= 7 ? {color: 'green', borderColor: 'green'}: {color: 'orange', borderColor: 'orange'}} >{(userScore * 10).toFixed(0)}%</UserScore></p>
               <h3>Overview</h3>
               <p>{overview || 'Description will be added later'}</p>
               <h3>Genres</h3>
