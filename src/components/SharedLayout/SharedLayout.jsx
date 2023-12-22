@@ -1,6 +1,6 @@
-import { Suspense, useState } from 'react';
+import { Suspense, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { Container, Header, ListHeader } from './SharedLayout.styled';
 import Loader from 'components/Loader/Loader';
 
@@ -22,7 +22,34 @@ const StyledLink = styled(NavLink)`
 `;
 
 const SharedLayout = () => {
-  const [isActive, setIsActive] = useState(true);
+  const firstLink = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const currentRef = firstLink.current;
+    if(currentRef) {
+     currentRef.classList.add('active');
+    }
+   
+    return () => {
+      if(currentRef) {
+        currentRef.classList.remove('active');
+      }
+    };
+  }, [])
+
+  useEffect(() => {
+    const currentRef = firstLink.current;
+    if(location.pathname === '/') {
+      currentRef.classList.add('active');
+    }
+
+    return () => { 
+      if(location.pathname !== '/') {
+      currentRef.classList.remove('active');
+    }
+  }
+  }, [location.pathname])
 
   return (
     <Container>
@@ -30,12 +57,12 @@ const SharedLayout = () => {
         <nav>
           <ListHeader>
             <li>
-              <StyledLink to={'/'} className={isActive && 'active'}>
+              <StyledLink end to={'/'} ref={firstLink}>
                 Home
               </StyledLink>
             </li>
             <li>
-              <StyledLink to={'/movies'} onClick={() => setIsActive(false)}>
+              <StyledLink to={'/movies'}>
                 movies
               </StyledLink>
             </li>
