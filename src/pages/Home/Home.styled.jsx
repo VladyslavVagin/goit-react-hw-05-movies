@@ -47,9 +47,13 @@ export const ImageM = styled.img`
     rgba(255, 255, 255, 0.15) 0px 2px 6px 2px;
 `;
 export const MainTitle = styled.h1`
+  width: 280px;
+  margin: 16px auto;
   text-align: center;
   background-color: black;
   animation: pulse 2000ms infinite;
+  border-radius: 34px;
+  box-shadow: 5px 5px 7px #9b9b9b, -5px -5px 7px #ffffff;
   @keyframes pulse {
     0% {
       color: #ff9900;
