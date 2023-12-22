@@ -7,7 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #eff4f7;
+  background-color: #cacaca;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -32,12 +32,6 @@ code {
   cursor: pointer;
 }
 
-.active-page {
-  background-color: orange;
-  color: black;
-  font-weight: 700;
-  border-radius: 50%;
-}
 .page-item {
   list-style: none;
   min-height: 36px;
@@ -48,5 +42,14 @@ code {
   margin-top: 2px;
   border: 1px solid black;
   border-radius: 100px;
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow: 5px 5px 10px #949494, -5px -5px 10px #ffffff;
+  transition: all 600ms ease;
+}
+
+.active-page {
+  background: orange;
+  color: black;
+  font-weight: 700;
+  border-radius: 50%;
 }

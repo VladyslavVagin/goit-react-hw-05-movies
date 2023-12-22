@@ -6,8 +6,7 @@ export const Container = styled.div`
 export const Header = styled.header`
     padding: 20px 0;
     border-bottom: 2px solid black;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
-    background-color: #f5ecec;
+    background-color: #cacaca;
     font-weight: 700;
 `
 export const ListHeader = styled.ul`

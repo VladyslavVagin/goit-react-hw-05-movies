@@ -8,6 +8,9 @@ export const InputSearch = styled.input`
   border-radius: 40px;
   border: 2px solid black;
   transition: all 600ms ease;
+  border-radius: 103px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 7px 7px 34px #666666, -7px -7px 34px #ffffff;
   &:focus-within {
     border-color: orange;
   }
